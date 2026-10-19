@@ -29,6 +29,21 @@
   let state=defaultState();
   try {const old=localStorage.getItem(KEY);if(old)state=cleanState(JSON.parse(old));}catch(e){storageWarning=true;}
   let taskFilter='todos', contentFilter='Todos', activePage='inicio', toastTimer;
+  const mobileNavigation=window.matchMedia('(max-width: 900px)');
+  function setMenu(open,restoreFocus=false){
+    const active=mobileNavigation.matches&&open;
+    $('#sidebar').classList.toggle('open',active);
+    $('#sidebar').inert=mobileNavigation.matches&&!active;
+    $('#nav-backdrop').hidden=!active;
+    document.body.classList.toggle('menu-open',active);
+    $('#main').inert=active;
+    $('#export-button').inert=active;
+    $('#menu-toggle').setAttribute('aria-expanded',String(active));
+    $('#menu-toggle').setAttribute('aria-label',active?'Cerrar navegación':'Abrir navegación');
+    if(active)$('#menu-close').focus();
+    else if(restoreFocus)$('#menu-toggle').focus();
+  }
+  mobileNavigation.addEventListener('change',()=>setMenu(false));
   const ownerLabel=x=>x==='Socio/a 1'?state.owner1:x==='Socio/a 2'?state.owner2:'Ambos';
   function save(){state.savedAt=new Date().toISOString();try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){if(!storageWarning){toast('El navegador no permite guardar. Exporta el avance antes de cerrar.');storageWarning=true;}}}
   function toast(message){clearTimeout(toastTimer);$('#toast').textContent=message;$('#toast').hidden=false;toastTimer=setTimeout(()=>$('#toast').hidden=true,5000);}
@@ -177,7 +192,7 @@
     $$('.page').forEach(p=>p.hidden=p.id!==activePage);
     $$('[data-nav]').forEach(a=>{a.classList.toggle('active',a.dataset.nav===activePage);if(a.dataset.nav===activePage)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
     $('#page-label').textContent=C.sections.find(s=>s[0]===activePage)[1];refreshBrand();
-    $('#sidebar').classList.remove('open');$('#menu-toggle').setAttribute('aria-expanded','false');
+    setMenu(false);
     if(focus){window.scrollTo(0,0);$('#main').focus({preventScroll:true});}
   }
   function exportState(){
@@ -186,7 +201,8 @@
   }
   document.addEventListener('click',e=>{
     const b=e.target.closest('button');if(!b)return;
-    if(b.id==='menu-toggle'){const open=$('#sidebar').classList.toggle('open');b.setAttribute('aria-expanded',String(open));}
+    if(b.id==='menu-toggle')setMenu(!$('#sidebar').classList.contains('open'));
+    if(b.id==='menu-close'||b.id==='nav-backdrop')setMenu(false,true);
     if(b.id==='export-button'||b.hasAttribute('data-export'))exportState();
     if(b.dataset.giftMode){state.gift.mode=b.dataset.giftMode;updateGift();save();}
     if(b.id==='apply-pack'){state.calc.pack=giftCost();save();renderNumbers();location.hash='numeros';toast('Costo de presentación aplicado. Revisa el precio del pedido si agregas complementos.');}
@@ -215,7 +231,17 @@
     const file=e.target.files[0];if(!file)return;
     try{if(file.size>300000)throw new Error('El archivo supera el tamaño permitido para un avance.');const next=cleanState(JSON.parse(await file.text()));if(window.confirm('Importar reemplazará el avance local. ¿Continuar?')){state=next;save();renderAll();toast('Avance importado correctamente.');}}catch(err){toast(`No se pudo importar: ${err.message}`);}finally{e.target.value='';}
   });
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#sidebar').classList.remove('open');$('#menu-toggle').setAttribute('aria-expanded','false');}});
+  document.addEventListener('keydown',e=>{
+    if(!$('#sidebar').classList.contains('open'))return;
+    if(e.key==='Escape')setMenu(false,true);
+    if(e.key==='Tab'){
+      const items=[...$('#sidebar').querySelectorAll('a[href],button')];
+      const first=items[0],last=items[items.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    }
+  });
+  $('#sidebar').addEventListener('click',e=>{if(e.target.closest('a')&&mobileNavigation.matches)setMenu(false,true);});
   document.addEventListener('submit',e=>{if(e.target.id==='calculator-form')e.preventDefault();});
   window.addEventListener('hashchange',()=>route());
   window.addEventListener('storage',e=>{if(e.key===KEY)toast('El avance cambió en otra pestaña. Recarga antes de seguir editando.');});

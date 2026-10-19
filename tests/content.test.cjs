@@ -13,7 +13,7 @@ test('todas las secciones y archivos del documento existen',()=>{
   const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
   for(const [id] of C.sections)assert.ok(html.includes(`id="${id}"`),id);
   const refs=[...html.matchAll(/(?:src|href)="([^"#][^"]*)"/g)].map(m=>m[1]);
-  refs.forEach(ref=>assert.ok(fs.existsSync(path.join(root,ref)),ref));
+  refs.forEach(ref=>assert.ok(fs.existsSync(path.join(root,ref.split('?')[0])),ref));
   assert.equal(C.sections.length,9);
 });
 test('la ruta tiene identificadores únicos y responsables reconocidos',()=>{

@@ -62,6 +62,7 @@ Sitio estático sin paquetes, rastreadores, fuentes remotas ni backend. Funciona
 
 - `index.html`: estructura, metadatos y carga de archivos.
 - `styles.css`: diseño adaptable a celular, tablet y escritorio; impresión.
+- `mobile.css`: ajustes para teléfonos y tablets, textos legibles y controles táctiles.
 - `content.js`: productos propuestos, ruta, ideas de contenido y fuentes.
 - `app.js`: interfaz, notas, navegación, exportación e importación.
 - `model.js`: fórmulas y validación del simulador.

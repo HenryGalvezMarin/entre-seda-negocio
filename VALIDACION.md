@@ -14,6 +14,8 @@
 
 ## Revisión al abrir la web
 
+Actualización móvil del 18 de octubre de 2026 (Lima): se amplió la tipografía, se reorganizaron tarjetas y formularios, y se incorporó un menú lateral con cierre, fondo y control del foco. Se verificaron sintaxis y pruebas automáticas; la comprobación visual en un teléfono real sigue pendiente.
+
 1. Navegar por las nueve secciones en computadora y celular.
 2. Cambiar el precio y comprobar que se actualicen los escenarios.
 3. Seleccionar extras de regalo y aplicarlos al simulador.
