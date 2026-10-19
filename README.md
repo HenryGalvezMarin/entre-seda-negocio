@@ -4,6 +4,10 @@ Un cuaderno web interactivo, en español, para construir en pareja una marca de 
 
 ## Abrir la web
 
+**Web publicada:** https://henrygalvezmarin.github.io/entre-seda-negocio/
+
+**Repositorio:** https://github.com/HenryGalvezMarin/entre-seda-negocio
+
 Descarga y descomprime esta carpeta. Abre **index.html** con tu navegador. No requiere instalación, cuenta ni conexión para las funciones principales. Los enlaces a fuentes sí requieren internet.
 
 Para tener una dirección que ambos puedan abrir desde el celular, sigue [la guía para GitHub Pages](docs/GUIA-GITHUB-PAGES.md).
@@ -78,7 +82,7 @@ node --check content.js
 node --check model.js
 ```
 
-La entrega incluye verificaciones automatizadas de cálculo y estructura. Queda pendiente una revisión visual en navegador y la comprobación del despliegue real en GitHub Pages.
+La entrega incluye 12 verificaciones automatizadas de cálculo y estructura aprobadas. Publicación en GitHub Pages, vista inicial en escritorio, recálculo del simulador y persistencia de tareas comprobados el 18 de octubre de 2026 (Lima). La revisión visual en celulares y la prueba completa de importación/exportación quedan pendientes.
 
 ## Siguiente evolución
 

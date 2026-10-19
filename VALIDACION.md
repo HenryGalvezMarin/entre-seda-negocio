@@ -6,8 +6,11 @@
 - Código JavaScript revisado con el analizador de Node.
 - 12 verificaciones automatizadas de cálculo y consistencia aprobadas.
 - Diseño adaptable y estilo de impresión incluidos.
-- Revisión visual y pruebas de interacción en un navegador real: pendientes; el entorno de esta entrega no dispone del navegador requerido para esa revisión.
-- Publicación remota y comprobación del enlace de GitHub Pages: pendientes. Instalar el plugin no confirma que sus herramientas de escritura estén disponibles en esta sesión.
+- Vista inicial en navegador de escritorio: comprobada. Simulador probado con un cambio de precio y restaurado al ejemplo inicial.
+- Persistencia de tareas: comprobada cambiando una tarea, recargando y restaurando su estado inicial.
+- Revisión visual en celulares y ciclo completo de importación/exportación: pendientes.
+- Publicación remota en GitHub Pages completada y enlace verificado el 18 de octubre de 2026 (Lima): https://henrygalvezmarin.github.io/entre-seda-negocio/
+- Primera compilación y despliegue: correctos (ejecución 39191979406).
 
 ## Revisión al abrir la web
 
