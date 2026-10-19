@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#582b3b">
+  <meta name="description" content="Cuaderno interactivo para construir una marca de lencería: concepto, colección, experiencia, números y próximos pasos.">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Entre Seda · Nuestro negocio, paso a paso</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="model.js" defer></script>
+  <script src="content.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir al contenido</a>
+  <aside class="sidebar" id="sidebar" aria-label="Navegación del cuaderno">
+    <a class="brand" href="#inicio"><img src="assets/mark.svg" width="40" height="40" alt=""><span><strong data-brand>Entre Seda</strong><small>CUADERNO DE NEGOCIO</small></span></a>
+    <p class="sidebar-intro">Una idea compartida.<br>Un siguiente paso claro.</p>
+    <nav id="navigation" aria-label="Secciones"></nav>
+    <div class="sidebar-bottom">
+      <div class="progress-heading"><span>Ruta de lanzamiento</span><strong id="nav-percent">0%</strong></div>
+      <progress id="nav-progress" max="100" value="0" aria-label="Avance de la ruta"></progress>
+      <p id="nav-count">0 tareas completadas</p>
+      <a href="#acuerdos" class="team-link"><span class="avatar">1</span><span class="avatar second">2</span><span>Un proyecto de dos ↗</span></a>
+      <div class="local-note"><span class="status-dot"></span> Avance en este navegador<br><small>Exporten una copia para compartirlo.</small></div>
+    </div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar">
+      <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-label="Abrir navegación" aria-expanded="false" aria-controls="sidebar">☰</button>
+      <div class="breadcrumb">Nuestro proyecto <span>/</span> <strong id="page-label">El punto de partida</strong></div>
+      <div class="topbar-actions"><span class="draft-tag">EN CONSTRUCCIÓN</span><button class="button button-quiet" id="export-button" type="button">Exportar avance <span aria-hidden="true">↗</span></button></div>
+    </header>
+    <main id="main" tabindex="-1">
+      <noscript><div class="notice">Activa JavaScript para explorar el cuaderno. También puedes leer <a href="docs/PLAN-DE-NEGOCIO.md">el plan completo en texto</a>.</div></noscript>
+      <section id="inicio" class="page" aria-labelledby="title-inicio"></section>
+      <section id="marca" class="page" aria-labelledby="title-marca" hidden></section>
+      <section id="coleccion" class="page" aria-labelledby="title-coleccion" hidden></section>
+      <section id="experiencia" class="page" aria-labelledby="title-experiencia" hidden></section>
+      <section id="ventas" class="page" aria-labelledby="title-ventas" hidden></section>
+      <section id="numeros" class="page" aria-labelledby="title-numeros" hidden></section>
+      <section id="ruta" class="page" aria-labelledby="title-ruta" hidden></section>
+      <section id="acuerdos" class="page" aria-labelledby="title-acuerdos" hidden></section>
+      <section id="fuentes" class="page" aria-labelledby="title-fuentes" hidden></section>
+      <footer class="footer"><span><span data-brand>Entre Seda</span> · Idea de negocio v1.0</span><span>Propuesta de trabajo · Octubre 2026</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <input id="import-file" type="file" accept=".json,application/json" hidden>
+</body>
+</html>
